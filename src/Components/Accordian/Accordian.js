@@ -4,36 +4,32 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%"
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
+    backgroundColor: "#e8840b",
+    color: "white"
   }
 }));
 
-function Accordian() {
+function Accordian({ heading, ...props }) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <ExpansionPanel>
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
+          className={`${classes.expandIcon} ${classes.root}`}
+          expandIcon={<AddIcon style={{ color: "white" }} />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          style={{ height: "5px" }}
         >
-          <Typography className={classes.heading}>Expansion Panel 1</Typography>
+          <Typography className={classes.heading}>{heading}</Typography>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+        <ExpansionPanelDetails style={{ backgroundColor: "#FFFDD0" }}>
+          {props.children}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
